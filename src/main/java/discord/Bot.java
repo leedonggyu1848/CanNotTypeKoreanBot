@@ -25,6 +25,7 @@ public class Bot extends ListenerAdapter
             FileReader file = new FileReader(propertiesFile);
             properties.load(file);
         } catch (Exception ignored) {
+            System.out.println("Cant find config.properties file");
         }
 
         try {

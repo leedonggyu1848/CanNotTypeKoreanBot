@@ -97,8 +97,8 @@ gen
 
 config.properties
 
-build/
-.gradle/
+build/*
+.gradle/*
 .DS_Store
 *.ipr
 *.iws
