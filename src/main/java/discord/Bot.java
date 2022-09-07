@@ -19,17 +19,9 @@ public class Bot extends ListenerAdapter
     private boolean isDelete = false;
     public static void main (String[] args)
     {
-        Properties properties = new Properties();
+        String token = System.getenv("TOKEN_KEY");
         try {
-            File propertiesFile = new File(Objects.requireNonNull(Bot.class.getResource("/config.properties")).toURI());
-            FileReader file = new FileReader(propertiesFile);
-            properties.load(file);
-        } catch (Exception ignored) {
-            System.out.println("Cant find config.properties file");
-        }
-
-        try {
-            JDABuilder.createLight(properties.getProperty("token"), GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
+            JDABuilder.createLight(token, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
                     .addEventListeners(new Bot())
                     .setActivity(Activity.playing("번역"))
                     .build();
