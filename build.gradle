@@ -2,6 +2,9 @@ plugins {
     id 'java'
 }
 
+sourceCompatibility = 16
+targetCompatibility = 16
+
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
 
@@ -17,9 +20,13 @@ tasks.withType(JavaCompile){
 }
 
 dependencies {
-    implementation "net.dv8tion:JDA:5.0.0-alpha.18"
+    implementation files("jar/JDA-5.0.0-alpha.18-withDependencies.jar")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+task run(dependsOn: build) {
+
 }
 
 test {
@@ -27,9 +34,15 @@ test {
 }
 
 jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes(
                 'Main-Class': 'discord.Bot'
         )
+    }
+    from {
+        configurations.compileClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }
