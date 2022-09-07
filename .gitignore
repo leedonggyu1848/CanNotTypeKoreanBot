@@ -96,3 +96,9 @@ out
 gen
 
 config.properties
+
+build/
+.gradle/
+.DS_Store
+*.ipr
+*.iws
