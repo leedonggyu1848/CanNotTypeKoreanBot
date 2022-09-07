@@ -1,0 +1,1 @@
+worker: java -jar  ./build/libs/CanNotTypeKoreanBot-1.0.jar

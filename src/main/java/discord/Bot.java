@@ -20,6 +20,10 @@ public class Bot extends ListenerAdapter
     public static void main (String[] args)
     {
         String token = System.getenv("TOKEN_KEY");
+        if (token == null) {
+            System.out.println("토큰 정보가 없습니다.");
+            return;
+        }
         try {
             JDABuilder.createLight(token, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT)
                     .addEventListeners(new Bot())
